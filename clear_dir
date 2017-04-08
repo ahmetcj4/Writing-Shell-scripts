@@ -1,0 +1,43 @@
+#!/bin/bash
+# clear_dir - program to clear given directory
+
+# An error exit function
+error_exit()
+{
+	echo "$1" 1>&2
+	exit 1
+}
+ 
+#main
+# Check the exit status
+[ $# -ne 1 ] && error_exit "usage: $0 directory" 
+[ ! -d $1 ] && error_exit "$1 is not a directory!" 
+
+cd $1 || error_exit "Cannot change directory! Aborting"
+rm *
+
+# Another way to do it if exiting is not desired
+# cd $1 && rm *
+
+#AND And OR Lists
+
+#"The control operators && and || denote AND lists and OR lists, respectively. An AND list has the form
+#command1 && command2
+
+#command2 is executed if, and only if, command1 returns an exit status of zero.
+
+#An OR list has the form
+#command1 || command2
+
+#command2 is executed if, and only if, command1 returns a non-zero exit status. The exit status of AND and OR lists is the exit status of the last command executed in the list."
+
+
+
+
+
+
+
+
+
+
+
