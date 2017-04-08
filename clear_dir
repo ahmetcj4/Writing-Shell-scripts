@@ -2,18 +2,26 @@
 # clear_dir - program to clear given directory
 
 # An error exit function
+PROGNAME=$(basename $0)
+
 error_exit()
 {
-	echo "$1" 1>&2
+#	----------------------------------------------------------------
+#	Function for exit due to fatal program error
+#		Accepts 1 argument:
+#			string containing descriptive error message
+#	----------------------------------------------------------------
+
+	echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
 	exit 1
 }
  
 #main
 # Check the exit status
-[ $# -ne 1 ] && error_exit "usage: $0 directory" 
-[ ! -d $1 ] && error_exit "$1 is not a directory!" 
+[ $# -ne 1 ] && error_exit "$LINENO: usage: $0 directory" 
+[ ! -d $1 ] && error_exit "$LINENO: $1 is not a directory!" 
 
-cd $1 || error_exit "Cannot change directory! Aborting"
+cd $1 || error_exit "$LINENO: Cannot change directory! Aborting."
 rm *
 
 # Another way to do it if exiting is not desired
