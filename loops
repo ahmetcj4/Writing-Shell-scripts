@@ -13,3 +13,14 @@ until [ "$number" -ge 10 ]; do
     echo "Number = $number"
     number=$((number + 1))
 done
+
+count=0
+for i in $(cat ~/.profile); do
+    count=$((count + 1))
+    echo "Word $count ($i) contains $(echo -n $i | wc -c) characters"
+done
+
+#The shell variable "$@" contains the list of command line arguments
+for i in "$@"; do
+    echo $i
+done
